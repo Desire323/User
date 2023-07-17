@@ -21,12 +21,14 @@ services:
     image: user-service
     container_name: user-service
     environment:
+      SPRING_APPLICATION_NAME: user-service
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/user
       SPRING_DATASOURCE_USERNAME: user
       SPRING_DATASOURCE_PASSWORD: password
       SPRING_DATASOURCE_DRIVER-CLASS-NAME: com.mysql.cj.jdbc.Driver
       SPRING_PROFILES_ACTIVE: prod
-      AUTHENTICATION_SERVICE_URL: http://authentication-service:8080
+      AUTHENTICATION_SERVICE_URL: http://AUTHENTICATION-SERVICE:8080
+      SERVICE_REGISTRY_URL: http://service-registry:8761/eureka
     ports:
       - "8082:8080"
     depends_on:
