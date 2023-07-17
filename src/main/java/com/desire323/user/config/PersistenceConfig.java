@@ -18,14 +18,5 @@ public class PersistenceConfig {
         dataSource.setPassword(System.getenv("SPRING_DATASOURCE_PASSWORD"));
         return dataSource;
     }
-//    @Bean
-//    public DataSource dataSource(){
-//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-//        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-//        dataSource.setUrl("jdbc:mysql://localhost:3305/user");
-//        dataSource.setUsername("user");
-//        dataSource.setPassword("password");
-//        return dataSource;
-//    }
 }
 
