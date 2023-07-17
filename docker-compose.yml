@@ -1,7 +1,7 @@
 services:
   mysql-db:
     build: ./DATABASE
-    image: mysql:latest
+    image: arm64v8/mysql:latest
     container_name: mysql-db
     volumes:
       - ./DATABASE/schema.sql:/docker-entrypoint-initdb.d/schema.sql
