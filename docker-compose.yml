@@ -1,0 +1,39 @@
+services:
+  mysql-db:
+    build: ./DATABASE
+    image: mysql:latest
+    container_name: mysql-db
+    volumes:
+      - ./DATABASE/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    environment:
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: user
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3307:3306"
+    networks:
+      - desire
+
+  user-service:
+    build: ./
+    image: user-service
+    container_name: user-service
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/user
+      SPRING_DATASOURCE_USERNAME: user
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_DATASOURCE_DRIVER-CLASS-NAME: com.mysql.cj.jdbc.Driver
+      SPRING_PROFILES_ACTIVE: prod
+      AUTHENTICATION_SERVICE_URL: http://authentication-service:8080
+    ports:
+      - "8082:8080"
+    depends_on:
+      - mysql-db
+    networks:
+      - desire
+
+networks:
+  desire:
+    external: true
