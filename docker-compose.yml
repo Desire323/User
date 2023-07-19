@@ -27,10 +27,10 @@ services:
       SPRING_DATASOURCE_PASSWORD: password
       SPRING_DATASOURCE_DRIVER-CLASS-NAME: com.mysql.cj.jdbc.Driver
       SPRING_PROFILES_ACTIVE: prod
-      AUTHENTICATION_SERVICE_URL: http://AUTHENTICATION-SERVICE:8080
+      AUTHENTICATION_SERVICE_URL: http://AUTHENTICATION-SERVICE:8080/auth
       SERVICE_REGISTRY_URL: http://service-registry:8761/eureka
-    ports:
-      - "8082:8080"
+#    ports:
+#      - "8082:8080"
     depends_on:
       - mysql-db
     networks:
