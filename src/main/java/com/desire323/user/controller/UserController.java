@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/user")
 public class UserController {
     private final UserService userService;
 
@@ -22,12 +23,7 @@ public class UserController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/zdr")
-    public ResponseEntity<String> zdr(){
-        return ResponseEntity.ok("Zdr Mitko");
-    }
-
-    @PostMapping("/")
+    @PostMapping()
     public ResponseEntity<AddUserResponse> addUser(@RequestBody AddUserRequest request) {
         AddUserResponse response = userService.addUser(request);
         return ResponseEntity.ok(response);
