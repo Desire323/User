@@ -27,9 +27,7 @@ public class UserDAOMySQL implements UserRepository {
         params.put("id", id);
 
         try{
-            User user = jdbcTemplate.queryForObject(sql,
-                    params,
-                    BeanPropertyRowMapper.newInstance(User.class));
+            User user = jdbcTemplate.queryForObject(sql, params, new UserMapper());
 
             return Optional.of(user);
         }
@@ -46,7 +44,7 @@ public class UserDAOMySQL implements UserRepository {
         try{
             User user = jdbcTemplate.queryForObject(sql,
                     params,
-                    BeanPropertyRowMapper.newInstance(User.class));
+                    new UserMapper());
 
             return Optional.of(user);
         }
@@ -57,7 +55,7 @@ public class UserDAOMySQL implements UserRepository {
 
     public List<User> findAll() {
         String sql = "SELECT * FROM user";
-        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class));
+        return jdbcTemplate.query(sql, new UserMapper());
     }
 
     public void save(User user) {
@@ -92,4 +90,9 @@ public class UserDAOMySQL implements UserRepository {
         jdbcTemplate.update(sql, params);
     }
 
+    private static class UserMapper extends BeanPropertyRowMapper<User> {
+        public UserMapper() {
+            super(User.class);
+        }
+    }
 }
