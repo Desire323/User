@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class UserLoginResponse {
-    private int id;
+    private Long id;
     private String firstname;
     private String lastname;
     private String email;
@@ -25,11 +25,11 @@ public class UserLoginResponse {
                 .collect(Collectors.toList());
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

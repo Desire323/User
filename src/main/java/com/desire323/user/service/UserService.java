@@ -16,12 +16,12 @@ public class UserService {
     private final UserRepository userRepository;
     private final RestTemplate restTemplate;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, RestTemplate restTemplate) {
         this.userRepository = userRepository;
-        this.restTemplate = new RestTemplate();
+        this.restTemplate = restTemplate;
     }
 
-    public Optional<User> getById(int id) {
+    public Optional<User> getById(Long id) {
         return userRepository.findById(id);
     }
     public Optional<UserLoginResponse> getByEmail(String email) {
@@ -42,13 +42,13 @@ public class UserService {
         user.setPassword(request.getPassword());
         user.setRole(Role.USER);
         userRepository.save(user);
-        int id = userRepository.findByEmail(email).get().getId().intValue();
+        Long id = userRepository.findByEmail(email).get().getId();
 
         return new AddUserResponse(id, email);
     }
 
 
-    public Optional<String> getFirstName(int id) {
+    public Optional<String> getFirstName(Long id) {
         Optional<User> optionalUser = this.userRepository.findById(id);
         if (optionalUser.isEmpty()) {
             return Optional.empty();
@@ -66,7 +66,7 @@ public class UserService {
         return Optional.of(user.getFirstname());
     }
 
-    public Optional<String> getLastName(int id) {
+    public Optional<String> getLastName(Long id) {
         Optional<User> optionalUser = this.userRepository.findById(id);
         if (optionalUser.isEmpty()) {
             return Optional.empty();
@@ -84,7 +84,7 @@ public class UserService {
         return Optional.of(user.getLastname());
     }
 
-    public Optional<String> getFullName(int id) {
+    public Optional<String> getFullName(Long id) {
         Optional<User> optionalUser = this.userRepository.findById(id);
         if (optionalUser.isEmpty()) {
             return Optional.empty();

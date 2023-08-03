@@ -21,7 +21,7 @@ public class UserDAOMySQL implements UserRepository {
         this.jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
-    public Optional<User> findById(Integer id) {
+    public Optional<User> findById(Long id) {
         String sql = "SELECT * FROM user WHERE id = :id";
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
@@ -83,7 +83,7 @@ public class UserDAOMySQL implements UserRepository {
         jdbcTemplate.update(sql, params);
     }
 
-    public void deleteById(Integer id) {
+    public void deleteById(Long id) {
         String sql = "DELETE FROM user WHERE id = :id";
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);

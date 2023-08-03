@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface UserRepository {
 
-    Optional<User> findById(Integer id);
+    Optional<User> findById(Long id);
 
     Optional<User> findByEmail(String email);
 
@@ -20,5 +20,5 @@ public interface UserRepository {
 
     void update(User user);
 
-    void deleteById(Integer id);
+    void deleteById(Long id);
 }

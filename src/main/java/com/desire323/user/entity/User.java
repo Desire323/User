@@ -10,14 +10,14 @@ import java.util.List;
 
 public class User implements UserDetails {
 
-    private Integer id;
+    private Long id;
     private String firstname;
     private String lastname;
     private String email;
     private String password;
     private Role role;
 
-    public User(Integer id, String firstname, String lastname, String email, String password, Role role) {
+    public User(Long id, String firstname, String lastname, String email, String password, Role role) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -30,11 +30,11 @@ public class User implements UserDetails {
 
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -110,7 +110,7 @@ public class User implements UserDetails {
     }
 
     public static User fromResultSet(ResultSet rs) throws SQLException {
-        Integer id = rs.getInt("id");
+        Long id = rs.getLong("id");
         String firstname = rs.getString("firstname");
         String lastname = rs.getString("lastname");
         String email = rs.getString("email");

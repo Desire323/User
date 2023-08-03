@@ -1,19 +1,19 @@
 package com.desire323.user.DTO;
 
 public class AddUserResponse {
-    private int id;
+    private Long id;
     private String email;
 
-    public AddUserResponse(int id, String email) {
+    public AddUserResponse(Long id, String email) {
         this.id = id;
         this.email = email;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
