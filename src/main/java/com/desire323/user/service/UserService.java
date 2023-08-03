@@ -2,6 +2,7 @@ package com.desire323.user.service;
 
 import com.desire323.user.DTO.AddUserRequest;
 import com.desire323.user.DTO.AddUserResponse;
+import com.desire323.user.DTO.CreatePersonDTO;
 import com.desire323.user.DTO.UserLoginResponse;
 import com.desire323.user.entity.Role;
 import com.desire323.user.entity.User;
@@ -43,6 +44,8 @@ public class UserService {
         user.setRole(Role.USER);
         userRepository.save(user);
         Long id = userRepository.findByEmail(email).get().getId();
+        CreatePersonDTO createPersonRequest = new CreatePersonDTO(id, request.getFirstname(), request.getLastname());
+        restTemplate.postForObject(System.getenv("FRIENDS_SERVICE_URL") + "/persons", createPersonRequest, CreatePersonDTO.class);
 
         return new AddUserResponse(id, email);
     }
