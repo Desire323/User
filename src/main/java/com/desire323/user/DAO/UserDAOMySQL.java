@@ -26,12 +26,11 @@ public class UserDAOMySQL implements UserRepository {
         Map<String, Object> params = new HashMap<>();
         params.put("id", id);
 
-        try{
+        try {
             User user = jdbcTemplate.queryForObject(sql, params, new UserMapper());
 
             return Optional.of(user);
-        }
-        catch (EmptyResultDataAccessException e) {
+        } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }
     }
@@ -41,14 +40,13 @@ public class UserDAOMySQL implements UserRepository {
         Map<String, Object> params = new HashMap<>();
         params.put("email", email);
 
-        try{
+        try {
             User user = jdbcTemplate.queryForObject(sql,
                     params,
                     new UserMapper());
 
             return Optional.of(user);
-        }
-        catch (EmptyResultDataAccessException e) {
+        } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
         }
     }

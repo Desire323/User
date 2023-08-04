@@ -4,7 +4,6 @@ import com.desire323.user.DTO.AddUserRequest;
 import com.desire323.user.DTO.AddUserResponse;
 import com.desire323.user.DTO.UserLoginResponse;
 import com.desire323.user.service.UserService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +17,7 @@ public class UserController {
     }
 
     @GetMapping("/email/{email}")
-    public ResponseEntity<UserLoginResponse> getUserByEmail(@PathVariable("email") String email){
+    public ResponseEntity<UserLoginResponse> getUserByEmail(@PathVariable("email") String email) {
         UserLoginResponse response = userService.getByEmail(email).get();
         return ResponseEntity.ok(response);
     }

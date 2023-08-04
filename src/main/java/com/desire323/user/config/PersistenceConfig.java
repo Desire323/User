@@ -14,8 +14,9 @@ public class PersistenceConfig {
     public RestTemplate restTemplate() {
         return new RestTemplate();
     }
+
     @Bean
-    public DataSource dataSource(){
+    public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(System.getenv("SPRING_DATASOURCE_DRIVER-CLASS-NAME"));
         dataSource.setUrl(System.getenv("SPRING_DATASOURCE_URL"));

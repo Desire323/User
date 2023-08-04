@@ -25,9 +25,10 @@ public class UserService {
     public Optional<User> getById(Long id) {
         return userRepository.findById(id);
     }
+
     public Optional<UserLoginResponse> getByEmail(String email) {
         Optional<User> optionalUser = userRepository.findByEmail(email);
-        if(optionalUser.isEmpty()){
+        if (optionalUser.isEmpty()) {
             return Optional.empty();
         }
         return Optional.of(new UserLoginResponse(optionalUser.get()));

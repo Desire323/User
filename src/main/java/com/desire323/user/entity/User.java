@@ -3,6 +3,7 @@ package com.desire323.user.entity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
@@ -28,6 +29,17 @@ public class User implements UserDetails {
 
     public User() {
 
+    }
+
+    public static User fromResultSet(ResultSet rs) throws SQLException {
+        Long id = rs.getLong("id");
+        String firstname = rs.getString("firstname");
+        String lastname = rs.getString("lastname");
+        String email = rs.getString("email");
+        String password = rs.getString("password");
+        Role role = Role.valueOf(rs.getString("role"));
+
+        return new User(id, firstname, lastname, email, password, role);
     }
 
     public Long getId() {
@@ -107,16 +119,5 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    public static User fromResultSet(ResultSet rs) throws SQLException {
-        Long id = rs.getLong("id");
-        String firstname = rs.getString("firstname");
-        String lastname = rs.getString("lastname");
-        String email = rs.getString("email");
-        String password = rs.getString("password");
-        Role role = Role.valueOf(rs.getString("role"));
-
-        return new User(id, firstname, lastname, email, password, role);
     }
 }
