@@ -30,8 +30,8 @@ services:
       AUTHENTICATION_SERVICE_URL: http://AUTHENTICATION-SERVICE:8080/auth
       FRIENDS_SERVICE_URL: http://FRIENDS-SERVICE:8080
       SERVICE_REGISTRY_URL: http://service-registry:8761/eureka
-#    ports:
-#      - "8082:8080"
+    ports:
+      - "5004:8080"
     depends_on:
       - mysql-db
     networks:
